@@ -53,9 +53,8 @@ public class Main {
             double height =  input.nextDouble();
 
             double area = (width * height) - voidArea;
-            System.out.println("Area of Wall is " + area + " m^2");
-
             walls[i] = area;
+            System.out.println("Area of Wall is " + (walls[i]) + " m^2");
             totalArea += area;
         }
 
