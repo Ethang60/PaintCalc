@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -31,26 +32,27 @@ public class Main {
         double totalArea = 0;
         for (int i = 0; i < numWalls; i++) {
 
-            System.out.println("Does Walls " + (i + 1) + " Have a Window?(true or false)");
-            boolean answer = input.nextBoolean();
+            System.out.println("Does Wall " + (i + 1) + " Have a Void?(Yes or No)");
+            String answer = input.nextLine();
+            answer = answer.toUpperCase();
 
-            double windowArea = 0;
-            if (answer == true) {
-                System.out.println("Enter Width of Window (m)");
+            double voidArea = 0;
+            if (answer.equals("YES")) {
+                System.out.println("Enter Width of Void (m)");
                 double widthWindow = (double) input.nextDouble();
-                System.out.println("Enter Height of Window (m)");
+                System.out.println("Enter Height of Void (m)");
                 double heightWindow = (double) input.nextDouble();
-                windowArea = heightWindow * widthWindow;
+                voidArea = heightWindow * widthWindow;
             }
 
             System.out.println("Enter Width of Wall " + (i + 1) + " (m)");
-            double width = (double) input.nextDouble();
+            double width = input.nextDouble();
 
 
             System.out.println("Enter Height of Wall " + (i + 1) + " (m)");
-            double height = (double) input.nextDouble();
+            double height =  input.nextDouble();
 
-            double area = (width * height) - windowArea;
+            double area = (width * height) - voidArea;
             System.out.println("Area of Wall is " + area + " m^2");
 
             walls[i] = area;
@@ -59,9 +61,8 @@ public class Main {
 
         System.out.println("Total Area of the Walls is " + totalArea + "m^2");
 
-        int noOfTins = (int) ((Math.round(totalArea / areaPerTin)) + Math.ceil((totalArea % areaPerTin) / areaPerTin));
+        int noOfTins = (int) ((Math.ceil(totalArea / areaPerTin)));
         System.out.println("The number of tin(s) required is " + noOfTins);
-
 
         switch (tinSize) {
             case 1:
