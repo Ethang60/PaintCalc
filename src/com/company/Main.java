@@ -67,15 +67,9 @@ public class Main {
         System.out.println("The number of tin(s) required is " + noOfTins);
 
         switch (tinSize) {
-            case 1:
-                System.out.println("Price = £" + (3.50 * noOfTins));
-                break;
-            case 2:
-                System.out.println("Price = £" + (6 * noOfTins));
-                break;
-            case 3:
-                System.out.println("Price = £" + (10 * noOfTins));
-                break;
+            case 1 -> System.out.println("Price = £" + (3.50 * noOfTins));
+            case 2 -> System.out.println("Price = £" + (6 * noOfTins));
+            case 3 -> System.out.println("Price = £" + (10 * noOfTins));
         }
     }
 }
