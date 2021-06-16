@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -50,7 +49,7 @@ public class Main {
 
 
             System.out.println("Enter Height of Wall " + (i + 1) + " (m)");
-            double height =  input.nextDouble();
+            double height = input.nextDouble();
 
             double area = (width * height) - voidArea;
             walls[i] = area;
@@ -75,12 +74,6 @@ public class Main {
                 break;
 
         }
-        /*int i = 0;
-        while (i < 6){
-            System.out.println(i);
-            i++;
-        }
-        */
     }
 }
 
