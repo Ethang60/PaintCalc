@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static String yesNO(int wallNum){
+    public static String yesNO(int wallNum) {
         Scanner input2 = new Scanner(System.in);
         System.out.println("Does Wall " + (wallNum + 1) + " Have a Void?(Yes or No)");
         String answer = input2.nextLine();
@@ -12,7 +12,7 @@ public class Main {
         return answer;
     }
 
-    public static double areaCalc(int wallNum, double voidArea, int numWalls){
+    public static double areaCalc(int wallNum, double voidArea, int numWalls) {
         Scanner input3 = new Scanner(System.in);
         double[] walls = new double[numWalls];
         System.out.println("Enter Width of Wall " + (wallNum + 1) + " (m)");
@@ -32,23 +32,6 @@ public class Main {
         int numWalls = (int) input.nextDouble();
 
 
-        System.out.println("What Size Tin of Paint?");
-        System.out.println("(1 = 2.5l, 2 = 5l, 3 = 10l)");
-        int tinSize = input.nextInt();
-
-
-        int areaPerTin = 0;
-        switch (tinSize) {
-            case 1:
-                areaPerTin = 5;
-                break;
-            case 2:
-                areaPerTin = 10;
-                break;
-            case 3:
-                areaPerTin = 20;
-        }
-
         double totalArea = 0;
         for (int i = 0; i < numWalls; i++) {
 
@@ -63,9 +46,23 @@ public class Main {
 
             totalArea += areaCalc(i, voidArea, numWalls);
         }
-
         System.out.println("Total Area of the Walls is " + totalArea + "m^2");
 
+        System.out.println("What Size Tin of Paint?");
+        System.out.println("(1 = 2.5l, 2 = 5l, 3 = 10l)");
+        int tinSize = input.nextInt();
+
+        int areaPerTin = 0;
+        switch (tinSize) {
+            case 1:
+                areaPerTin = 5;
+                break;
+            case 2:
+                areaPerTin = 10;
+                break;
+            case 3:
+                areaPerTin = 20;
+        }
         int noOfTins = (int) ((Math.ceil(totalArea / areaPerTin)));
         System.out.println("The number of tin(s) required is " + noOfTins);
 
@@ -82,4 +79,3 @@ public class Main {
         }
     }
 }
-
