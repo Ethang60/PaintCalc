@@ -4,72 +4,74 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static String yesNO(int wallNum) {
+    public static String yesNoWindow(int wallNum) {
         Scanner input2 = new Scanner(System.in);
-        System.out.println("Does Wall " + (wallNum + 1) + " Have a Void?(Yes or No)");
+        System.out.println("Does Wall " + (wallNum + 1) + " Have a Window?(Yes or No)");
         String answer = input2.nextLine();
         answer = answer.toUpperCase();
         return answer;
     }
 
-    public static double areaCalc(int wallNum, double voidArea, int numWalls) {
+    public static double areaCalc(int wallNum, double windowArea) {
+        Wall wall1 = new Wall();
         Scanner input3 = new Scanner(System.in);
-        double[] walls = new double[numWalls];
         System.out.println("Enter Width of Wall " + (wallNum + 1) + " (m)");
-        double width = input3.nextDouble();
+        wall1.setWidth(input3.nextDouble());
         System.out.println("Enter Height of Wall " + (wallNum + 1) + " (m)");
-        double height = input3.nextDouble();
-        double area = (width * height) - voidArea;
-        walls[wallNum] = area;
-        System.out.println("Area of Wall is " + (walls[wallNum]) + " m^2");
-        return area;
+        wall1.setHeight(input3.nextDouble());
+        wall1.setArea(wall1.getWidth()*wall1.getHeight());
+        double paintArea = wall1.getArea() - windowArea;
+        System.out.println("Area of Wall is " + (paintArea) + " m^2");
+        return paintArea;
     }
 
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
         System.out.println("Enter Number of Walls");
-        int numWalls = (int) input.nextDouble();
+        Room room1 = new Room();
+        room1.numOfWalls = (int) input.nextDouble();
 
+        for (int i = 0; i < room1.numOfWalls; i++) {
 
-        double totalArea = 0;
-        for (int i = 0; i < numWalls; i++) {
-
-            double voidArea = 0;
-            if (yesNO(i).equals("YES")) {
-                System.out.println("Enter Width of Void (m)");
-                double widthWindow = input.nextDouble();
-                System.out.println("Enter Height of Void (m)");
-                double heightWindow = input.nextDouble();
-                voidArea = heightWindow * widthWindow;
+            Window window1 = new Window();
+            if (yesNoWindow(i).equals("YES")) {
+                System.out.println("Enter Width of Window (m)");
+                window1.setWidth(input.nextDouble());
+                System.out.println("Enter Height of Window (m)");
+                window1.setHeight(input.nextDouble());
+                window1.setArea(window1.getWidth()*window1.getHeight());
+                System.out.println("Total Area of the Window is " + window1.getArea() + "m^2");
             }
 
-            totalArea += areaCalc(i, voidArea, numWalls);
+            room1.totalArea += areaCalc(i, window1.getArea());
         }
-        System.out.println("Total Area of the Walls is " + totalArea + "m^2");
+        System.out.println("Total Area of the Walls is " + room1.totalArea + "m^2");
+
 
         System.out.println("What Size Tin of Paint?");
         System.out.println("(1 = 2.5l, 2 = 5l, 3 = 10l)");
         int tinSize = input.nextInt();
 
-        int areaPerTin = 0;
         switch (tinSize) {
-            case 1:
-                areaPerTin = 5;
-                break;
-            case 2:
-                areaPerTin = 10;
-                break;
-            case 3:
-                areaPerTin = 20;
-        }
-        int noOfTins = (int) ((Math.ceil(totalArea / areaPerTin)));
-        System.out.println("The number of tin(s) required is " + noOfTins);
-
-        switch (tinSize) {
-            case 1 -> System.out.println("Price = £" + (3.50 * noOfTins));
-            case 2 -> System.out.println("Price = £" + (6 * noOfTins));
-            case 3 -> System.out.println("Price = £" + (10 * noOfTins));
+            case 1 -> {
+                Tin25 tin1 = new Tin25();
+                int noOfTins = (int) ((Math.ceil(room1.totalArea / tin1.getAreaPerTin())));
+                System.out.println("The number of tin(s) required is " + noOfTins);
+                System.out.println("Price = £" + (tin1.getPrice() * noOfTins));
+            }
+            case 2 -> {
+                Tin5 tin2 = new Tin5();
+                int noOfTins = (int) ((Math.ceil(room1.totalArea / tin2.getAreaPerTin())));
+                System.out.println("The number of tin(s) required is " + noOfTins);
+                System.out.println("Price = £" + (tin2.getPrice() * noOfTins));
+            }
+            case 3 -> {
+                Tin10 tin3 = new Tin10();
+               int noOfTins = (int) ((Math.ceil(room1.totalArea / tin3.getAreaPerTin())));
+                System.out.println("The number of tin(s) required is " + noOfTins);
+                System.out.println("Price = £" + (tin3.getPrice() * noOfTins));
+            }
         }
     }
 }
