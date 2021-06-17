@@ -1,23 +1,32 @@
 package com.company;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Room {
 
     ///////////Attribute
-    protected int numOfWalls;
-    protected double totalArea;
+    private int numOfWalls;
+    private double totalArea;
+    ArrayList<Double> wallAreas = new ArrayList<>();
     ///////////Constructors
+
+
+
+
 
     //////////Methods
 
 
-    public int getNumOfWalls() {
+    public double getNumOfWalls() {
         return numOfWalls;
     }
 
     public double getTotalArea() {
         return totalArea;
+    }
+
+    public ArrayList<Double> getWallAreas() {
+        return wallAreas;
     }
 
     public void setNumOfWalls(int numOfWalls) {
@@ -26,5 +35,9 @@ public class Room {
 
     public void setTotalArea(double totalArea) {
         this.totalArea = totalArea;
+    }
+
+    public void setWallAreas(ArrayList<Double> wallAreas) {
+        this.wallAreas = wallAreas;
     }
 }
