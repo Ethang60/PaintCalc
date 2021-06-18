@@ -3,35 +3,35 @@ package com.company;
 public abstract class Shapes {
 
     ///////////Attribute
-    private double width;
-    private double height;
-    private double area = height * width;
+    protected double width;
+    protected double height;
+    protected double area;
     ///////////Constructors
 
 
 
     //////////Methods
-    protected double getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    protected double getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    protected double getArea() {
+    public double getArea() {
         return area;
     }
 
-    protected void setWidth(double width) {
+    public void setWidth(double width) {
         this.width = width;
     }
 
-    protected void setHeight(double height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
-    protected void setArea(double area) {
+    public void setArea(double area) {
         this.area = area;
     }
 }

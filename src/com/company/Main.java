@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -42,17 +41,17 @@ public class Main {
                 System.out.println("Enter Height of Window (m)");
                 window1.setHeight(input.nextDouble());
                 window1.setArea(window1.getWidth() * window1.getHeight());
+                room1.setNumOfWindows(room1.getNumOfWalls() + 1);
                 System.out.println("Total Area of the Window is " + window1.getArea() + "m^2");
             }
 
-            room1.setTotalArea(room1.getTotalArea() + areaCalc(i, window1.getArea()));
-            ArrayList<Double> wallAreas = new ArrayList<>();
-            wallAreas.add(areaCalc(i, window1.getArea()));
-            room1.setWallAreas(wallAreas);
-
+            double areaWall = areaCalc(i, window1.getArea());
+            room1.setTotalArea(room1.getTotalArea() + areaWall);
+            room1.wallAreas.add(areaWall);
         }
         System.out.println("Total Area of the Walls is " + room1.getTotalArea() + "m^2");
-        System.out.println("Area of Walls = " + (room1.getWallAreas()));
+        System.out.println("Area of Walls in the Room (m^2) = " + (room1.getWallAreas()));
+//        System.out.println("Number of Windows in Room = " + room1.getNumOfWindows());
 
 
         System.out.println("What Size Tin of Paint?");
